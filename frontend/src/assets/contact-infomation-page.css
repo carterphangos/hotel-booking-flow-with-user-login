@@ -1,0 +1,169 @@
+.contact-information-page {
+    min-height: 100vh;
+    background: #f8f8f8;
+    padding: 2rem 0;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.form-section {
+    background: #e8e8e8;
+    padding: 2rem;
+}
+
+.form-section h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 1rem;
+    color: #333;
+    border-radius: 0;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.proceed-button {
+    align-self: flex-start;
+    padding: 0.75rem 1.5rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+.proceed-button:hover {
+    background: #333;
+}
+
+.summary-section {
+    background: #e8e8e8;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.booking-dates-info {
+    text-align: left;
+}
+
+.booking-dates-info .dates {
+    font-size: 1rem;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.booking-dates-info .nights {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.booking-dates-info .room-guests {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.room-image {
+    width: 100%;
+    height: 200px;
+    background: #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.room-details h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem 0 2rem 0;
+    color: #333;
+    text-transform: uppercase;
+}
+
+.price-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.price-row.total {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #999;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-container {
+        padding: 0 1rem;
+    }
+}
