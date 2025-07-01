@@ -95,6 +95,57 @@ RUN mkdir -p /var/www/storage/logs \
     && mkdir -p /var/www/storage/framework/views \
     && mkdir -p /var/www/storage/framework/cache
 
+# Create startup script for Laravel commands
+RUN echo '#!/bin/bash\n\
+set -e\n\
+\n\
+echo "Starting Laravel application setup..."\n\
+\n\
+# Wait for database to be ready\n\
+echo "Waiting for database connection..."\n\
+until php artisan tinker --execute="DB::connection()->getPdo();" 2>/dev/null; do\n\
+  echo "Database not ready, waiting 2 seconds..."\n\
+  sleep 2\n\
+done\n\
+echo "Database connection established!"\n\
+\n\
+# Generate application key if not set\n\
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "" ]; then\n\
+  echo "Generating application key..."\n\
+  php artisan key:generate --force\n\
+else\n\
+  echo "Application key already set"\n\
+fi\n\
+\n\
+# Check if we should run fresh migrations (for first deployment)\n\
+if [ "$RUN_FRESH_MIGRATION" = "true" ]; then\n\
+  echo "Running fresh migrations with seeding..."\n\
+  php artisan migrate:fresh --seed --force\n\
+else\n\
+  echo "Running regular migrations..."\n\
+  php artisan migrate --force\n\
+  \n\
+  # Only run seeders if SKIP_SEEDING is not set to true\n\
+  if [ "$SKIP_SEEDING" != "true" ]; then\n\
+    echo "Running database seeders..."\n\
+    php artisan db:seed --force\n\
+  else\n\
+    echo "Skipping database seeding"\n\
+  fi\n\
+fi\n\
+\n\
+# Clear and cache config\n\
+echo "Optimizing application..."\n\
+php artisan config:cache\n\
+php artisan route:cache\n\
+php artisan view:cache\n\
+\n\
+echo "Laravel setup completed successfully!"\n\
+\n\
+# Start supervisor\n\
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf' > /start.sh \
+    && chmod +x /start.sh
+
 # Set environment for production
 ENV APP_ENV=production
 ENV APP_DEBUG=false
@@ -102,5 +153,5 @@ ENV APP_DEBUG=false
 # Expose port 80 for Render
 EXPOSE 80
 
-# Start supervisor (which runs both PHP-FPM and Nginx)
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Use startup script that handles Laravel setup then starts supervisor
+CMD ["/start.sh"]
