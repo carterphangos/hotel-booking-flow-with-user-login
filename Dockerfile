@@ -9,13 +9,14 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
+    libpq-dev \
     unzip \
     git \
     curl \
     nginx \
     supervisor \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo_mysql mbstring exif pcntl bcmath \
+    && docker-php-ext-install gd zip pdo_mysql pdo_pgsql mbstring exif pcntl bcmath \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
