@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/auth-context";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import type { User } from "../interfaces/user";
 import type { Room } from "../interfaces/room";
 import "../assets/dashboard-page.css";
 
@@ -28,7 +27,6 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [bookings, setBookings] = useState<BookingWithRoom[]>([]);
-  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +40,6 @@ export default function DashboardPage() {
         const userObj = JSON.parse(userStr);
         const res = await api.get(`/users/${userObj.id}`);
         const userData = res.data.user[0];
-        setUser(userData);
         setBookings((userData.bookings || []) as BookingWithRoom[]);
       } catch (err) {
         setError("Failed to fetch user or bookings.");

@@ -13,13 +13,7 @@ interface SelectRoomPageProps {
   rooms: Room[];
 }
 
-export default function SelectRoomPage({
-  bookingData,
-  updateBookingData,
-  onNext,
-  onBack,
-  rooms: initialRooms,
-}: SelectRoomPageProps) {
+export default function SelectRoomPage({ bookingData, updateBookingData, onNext, onBack }: SelectRoomPageProps) {
   const [roomsData, setRoomsData] = useState<PaginatedRooms | null>(null);
   const [sortBy, setSortBy] = useState<string>("lowest-price");
   const [loading, setLoading] = useState(false);
