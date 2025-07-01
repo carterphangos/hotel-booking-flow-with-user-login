@@ -7,7 +7,7 @@ interface ConfirmationPageProps {
   onBack: () => void;
 }
 
-export default function ConfirmationPage({ bookingData, onBack }: ConfirmationPageProps) {
+export default function ConfirmationPage({ bookingData }: ConfirmationPageProps) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date
