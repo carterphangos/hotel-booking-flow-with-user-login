@@ -1,6 +1,6 @@
 .masthead {
     background: #fff;
-    border-bottom: 2px solid #000;
+    border-bottom: 1px solid #000;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -48,7 +48,7 @@
 .nav-button {
     padding: 0.75rem 1.5rem;
     background: #fff;
-    border: 2px solid #000;
+    border: 1px solid #000;
     color: #000;
     cursor: pointer;
     font-weight: bold;
@@ -76,7 +76,7 @@
 .user-button {
     padding: 0.75rem 1rem;
     background: #f5f5f5;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     cursor: pointer;
     font-weight: bold;
     color: #000;
@@ -87,7 +87,7 @@
     top: 100%;
     right: 0;
     background: #fff;
-    border: 2px solid #000;
+    border: 1px solid #000;
     min-width: 150px;
     z-index: 10;
 }

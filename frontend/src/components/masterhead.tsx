@@ -11,7 +11,7 @@ export default function Masthead({ currentPage }: MastheadProps) {
   const { user, logout } = useAuth();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const navigate = useNavigate();
-  console.log(user);
+
   return (
     <header className="masthead">
       <div className="masthead-container">

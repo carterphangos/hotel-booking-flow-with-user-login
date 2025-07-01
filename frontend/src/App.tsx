@@ -77,7 +77,6 @@ function BookingFlow({
             bookingData={bookingData}
             updateBookingData={updateBookingData}
             onNext={() => navigate("/booking/confirmation")}
-            onBack={() => navigate("/booking/select")}
           />
         }
       />

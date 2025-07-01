@@ -65,7 +65,11 @@ export default function DashboardPage() {
   };
 
   const isUpcoming = (checkInDate: string) => {
-    return new Date(checkInDate) > new Date();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const checkIn = new Date(checkInDate);
+    checkIn.setHours(0, 0, 0, 0);
+    return checkIn >= today;
   };
 
   const upcomingBookings = bookings.filter((booking) => isUpcoming(booking.check_in) && booking.status !== "cancelled");

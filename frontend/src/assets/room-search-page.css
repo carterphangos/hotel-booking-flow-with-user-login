@@ -71,7 +71,7 @@
 .search-form {
     background: #fff;
     padding: 2rem;
-    border: 2px solid #000;
+    border: 1px solid #000;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -100,7 +100,7 @@
 .form-group input,
 .form-group select {
     padding: 1rem;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     background: #fff;
     font-size: 1rem;
     color: #000;

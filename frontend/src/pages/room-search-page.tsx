@@ -46,7 +46,10 @@ export default function RoomSearchPage({ bookingData, updateBookingData, onNext,
     <div className="room-search-page">
       <div className="hero-section">
         <div className="hero-image">
-          <img src="/placeholder.svg?height=400&width=1000" alt="Hotel Hero" />
+          <img
+            src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/133497922.jpg?k=aa885de489843469fb1bbaa03923d85fd0c45ecceb5f16225ae565c68e68edee&o=&hp=1"
+            alt="Hotel Hero"
+          />
         </div>
         <div className="hero-content">
           <h1>BOOK A ROOM</h1>
@@ -68,6 +71,7 @@ export default function RoomSearchPage({ bookingData, updateBookingData, onNext,
                 }
                 dateFormat="yyyy-MM-dd"
                 required
+                minDate={new Date()}
               />
             </div>
             <div className="form-group">
@@ -80,6 +84,7 @@ export default function RoomSearchPage({ bookingData, updateBookingData, onNext,
                 }
                 dateFormat="yyyy-MM-dd"
                 required
+                minDate={bookingData.checkIn ? new Date(bookingData.checkIn) : new Date()}
               />
             </div>
             <div className="form-group">

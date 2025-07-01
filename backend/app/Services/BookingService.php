@@ -39,9 +39,9 @@ class BookingService extends BaseService
             'nights' => $nights,
             'booking_number' => $bookingNumber,
             'status' => $status,
-            'title' => $data['title'] ?? null,
-            'name' => $data['name'] ?? null,
-            'email' => $data['email'] ?? null,
+            'title' => $data['title'],
+            'name' => $data['name'],
+            'email' => $data['email'],
         ]);
     }
 

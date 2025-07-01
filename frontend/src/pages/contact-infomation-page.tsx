@@ -10,14 +10,12 @@ interface ContactInformationPageProps {
   bookingData: BookingData;
   updateBookingData: (data: Partial<BookingData>) => void;
   onNext: () => void;
-  onBack: () => void;
 }
 
 export default function ContactInformationPage({
   bookingData,
   updateBookingData,
   onNext,
-  onBack,
 }: ContactInformationPageProps) {
   const [formData, setFormData] = useState({
     title: "Mr.",
@@ -37,8 +35,6 @@ export default function ContactInformationPage({
       setIsAuth(false);
     }
   }, []);
-
-  console.log(bookingData);
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -76,9 +72,10 @@ export default function ContactInformationPage({
           name: formData.name,
           email: formData.email,
         });
+        const fixedBooking = booking as any;
         updateBookingData({
           contactInfo: formData,
-          bookingNumber: booking.bookingNumber,
+          bookingNumber: fixedBooking.booking_number,
           total: booking.total,
           selectedRoom: booking.room,
         });
