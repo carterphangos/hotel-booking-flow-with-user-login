@@ -24,17 +24,6 @@ class RoomService extends BaseService
             $query->guest($filters['guest']);
         }
 
-        if (isset($filters['checkin']) && isset($filters['checkout'])) {
-            $checkin = $filters['checkin'];
-            $checkout = $filters['checkout'];
-            $query->whereDoesntHave('bookings', function ($q) use ($checkin, $checkout) {
-                $q->where(function ($query) use ($checkin, $checkout) {
-                    $query->where('checkin', '<', $checkout)
-                        ->where('checkout', '>', $checkin);
-                });
-            });
-        }
-
         if (
             isset($filters['sortColumn']) &&
             $filters['sortColumn'] === 'price'
