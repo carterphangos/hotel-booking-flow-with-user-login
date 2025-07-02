@@ -1,5 +1,4 @@
-import type React from "react";
-import { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import * as authApi from "../api/auth";
 import type { User } from "../interfaces/user";
 import { AUTH_CONSTANTS } from "../constants/auth";
@@ -10,6 +9,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   register: (userData: { name: string; email: string; password: string; title: string }) => Promise<boolean>;
   logout: () => Promise<void>;
+  loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -17,6 +17,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
@@ -68,6 +69,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (savedUser) {
       setUser(JSON.parse(atob(savedUser)));
     }
+    setLoading(false);
   }, []);
 
   return (
@@ -78,9 +80,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         register,
         logout,
+        loading,
       }}
     >
-      {children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 }

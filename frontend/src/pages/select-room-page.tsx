@@ -28,7 +28,7 @@ export default function SelectRoomPage({ bookingData, updateBookingData, onNext,
         checkIn: bookingData.checkIn,
         checkOut: bookingData.checkOut,
         guests: bookingData.guests,
-        sortBy: sortBy as any,
+        sortBy,
         page,
       });
       setRoomsData(fetchedRooms);
@@ -90,7 +90,6 @@ export default function SelectRoomPage({ bookingData, updateBookingData, onNext,
               <select id="sort" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                 <option value="lowest-price">LOWEST PRICE</option>
                 <option value="highest-price">HIGHEST PRICE</option>
-                <option value="rating">RATING</option>
               </select>
             </div>
           </div>
