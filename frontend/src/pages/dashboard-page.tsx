@@ -2,28 +2,11 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/auth-context";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import type { Room } from "../interfaces/room";
+import { BookingWithRoom } from "../interfaces/booking";
 import "../assets/dashboard-page.css";
 
-interface BookingWithRoom {
-  id: string;
-  user_id: string;
-  room_id: string;
-  check_in: string;
-  check_out: string;
-  guests: number;
-  booking_number: string;
-  total: string;
-  status: string;
-  nights: number;
-  cancelled_at: string | null;
-  created_at: string;
-  updated_at: string;
-  room?: Room;
-}
-
 export default function DashboardPage() {
-  const { token } = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [bookings, setBookings] = useState<BookingWithRoom[]>([]);
@@ -35,10 +18,8 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
       try {
-        const userStr = localStorage.getItem("hotel_user");
-        if (!userStr) throw new Error("User not found in localStorage");
-        const userObj = JSON.parse(userStr);
-        const res = await api.get(`/users/${userObj.id}`);
+        if (!user) throw new Error("User not found in context");
+        const res = await api.get(`/users/${user.id}`);
         const userData = res.data.user[0];
         setBookings((userData.bookings || []) as BookingWithRoom[]);
       } catch (err) {
@@ -47,8 +28,8 @@ export default function DashboardPage() {
         setLoading(false);
       }
     };
-    if (token) fetchUserAndBookings();
-  }, [token]);
+    if (token && user) fetchUserAndBookings();
+  }, [token, user]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -83,21 +64,6 @@ export default function DashboardPage() {
       }
     }
   };
-
-  if (!token) {
-    return (
-      <div className="dashboard-page">
-        <div className="dashboard-container">
-          <div className="auth-required">
-            <h2>Please sign in to view your dashboard</h2>
-            <button onClick={() => navigate("/login")} className="login-button">
-              Sign In
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="dashboard-page">

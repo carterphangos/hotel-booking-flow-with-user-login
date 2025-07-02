@@ -1,5 +1,5 @@
-import type { BookingData } from "../App";
-import ProgressIndicator from "../components/progress-indicatior";
+import { BookingData } from "../interfaces/booking";
+import ProgressIndicator from "../components/progress-indicator";
 import "../assets/confirmation-page.css";
 
 interface ConfirmationPageProps {

@@ -1,10 +1,10 @@
 import type React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import type { BookingData } from "../App";
-import ProgressIndicator from "../components/progress-indicatior";
+import { useState } from "react";
+import { BookingData } from "../interfaces/booking";
+import ProgressIndicator from "../components/progress-indicator";
 import "../assets/contact-infomation-page.css";
 import { createBooking } from "../api/booking";
+import { TITLE_OPTIONS } from "../constants/title-options";
 
 interface ContactInformationPageProps {
   bookingData: BookingData;
@@ -24,17 +24,8 @@ export default function ContactInformationPage({
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [isAuth, setIsAuth] = useState(true);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem("hotel_token");
-    if (!token) {
-      setIsAuth(false);
-    }
-  }, []);
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
@@ -80,8 +71,12 @@ export default function ContactInformationPage({
           selectedRoom: booking.room,
         });
         onNext();
-      } catch (err) {
-        setApiError("Failed to create booking. Please try again.");
+      } catch (err: any) {
+        if (err.response && err.response.status === 401) {
+          setApiError("Session expired. Please log in again.");
+        } else {
+          setApiError("Failed to create booking. Please try again.");
+        }
       } finally {
         setLoading(false);
       }
@@ -106,19 +101,6 @@ export default function ContactInformationPage({
       .toUpperCase();
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("hotel_token");
-    if (!token) {
-      setIsAuth(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isAuth) {
-      navigate("/login");
-    }
-  }, [isAuth, navigate]);
-
   return (
     <div className="contact-information-page">
       <ProgressIndicator currentStep={3} />
@@ -132,10 +114,11 @@ export default function ContactInformationPage({
               <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <select id="title" value={formData.title} onChange={(e) => handleInputChange("title", e.target.value)}>
-                  <option value="Mr.">Mr.</option>
-                  <option value="Ms.">Ms.</option>
-                  <option value="Mrs.">Mrs.</option>
-                  <option value="Dr.">Dr.</option>
+                  {TITLE_OPTIONS.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -178,7 +161,7 @@ export default function ContactInformationPage({
               <div className="room-guests">ROOM: {bookingData.guests} GUEST</div>
             </div>
 
-            <div className="room-image">
+            <div className="contact-room-image">
               <img src={bookingData.selectedRoom?.image} alt="Room image" />
             </div>
 

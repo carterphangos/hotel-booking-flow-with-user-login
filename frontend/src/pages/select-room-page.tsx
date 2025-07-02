@@ -1,7 +1,8 @@
-import type { BookingData } from "../App";
-import ProgressIndicator from "../components/progress-indicatior";
+import { BookingData } from "../interfaces/booking";
+import ProgressIndicator from "../components/progress-indicator";
 import "../assets/select-room-page.css";
-import { Room, getRooms, type PaginatedRooms } from "../api/room";
+import { getRooms } from "../api/room";
+import { Room, PaginatedRooms } from "../interfaces/room";
 import { useState, useEffect } from "react";
 import Pagination from "../components/pagination";
 
@@ -105,7 +106,7 @@ export default function SelectRoomPage({ bookingData, updateBookingData, onNext,
             <>
               {roomsData.data.map((room) => (
                 <div key={room.id} className="room-card">
-                  <div className="room-image">
+                  <div className="select-room-image">
                     <img src={room.image || "/placeholder.svg"} alt={room.title} />
                   </div>
                   <div className="room-content">

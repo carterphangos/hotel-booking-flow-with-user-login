@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/auth-context";
 import { useNavigate } from "react-router-dom";
+import { TITLE_OPTIONS } from "../constants/title-options";
 import "../assets/register-page.css";
 
 export default function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    title: "Mr.",
+    title: TITLE_OPTIONS[0],
     name: "",
     email: "",
     password: "",
@@ -85,10 +86,11 @@ export default function RegisterPage() {
               <div className="form-group">
                 <label htmlFor="title">Title</label>
                 <select id="title" value={formData.title} onChange={(e) => handleInputChange("title", e.target.value)}>
-                  <option value="Mr.">Mr.</option>
-                  <option value="Ms.">Ms.</option>
-                  <option value="Mrs.">Mrs.</option>
-                  <option value="Dr.">Dr.</option>
+                  {TITLE_OPTIONS.map((title) => (
+                    <option key={title} value={title}>
+                      {title}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="form-group">

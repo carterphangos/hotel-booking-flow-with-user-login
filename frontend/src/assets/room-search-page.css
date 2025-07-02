@@ -1,13 +1,13 @@
 .room-search-page {
     min-height: 100vh;
-    background: #fff;
+    background: var(--color-bg-primary);
 }
 
 .hero-section {
     position: relative;
     height: 400px;
     overflow: hidden;
-    background: #f5f5f5;
+    background: var(--color-bg-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,12 +17,12 @@
     width: 1000px;
     height: 400px;
     max-width: 100%;
-    background: #e0e0e0;
+    background: var(--color-bg-quinary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    font-size: 1.2rem;
+    color: var(--color-text-light);
+    font-size: var(--font-size-md);
 }
 
 .hero-image img {
@@ -37,41 +37,41 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #000;
+    color: var(--color-text-main);
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: var(--font-size-2xl);
     font-weight: bold;
-    margin: 0 0 1rem 0;
+    margin: 0 0 var(--spacing-lg) 0;
     letter-spacing: 3px;
 }
 
 .hero-date {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     margin: 0;
     font-weight: 500;
 }
 
 .search-section {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: var(--spacing-3xl) var(--spacing-2xl);
 }
 
 .search-section h2 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: #000;
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-3xl);
+    color: var(--color-text-main);
     font-weight: bold;
     letter-spacing: 2px;
 }
 
 .search-form {
-    background: #fff;
-    padding: 2rem;
-    border: 1px solid #000;
+    background: var(--color-bg-primary);
+    padding: var(--spacing-2xl);
+    border: 1px solid var(--color-border-main);
     max-width: 800px;
     margin: 0 auto;
 }
@@ -79,8 +79,8 @@
 .search-form-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
 }
 
 .form-group {
@@ -90,33 +90,33 @@
 
 .form-group label {
     font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #000;
-    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-main);
+    font-size: var(--font-size-sm);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .form-group input,
 .form-group select {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    background: #fff;
-    font-size: 1rem;
-    color: #000;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border-light);
+    background: var(--color-bg-primary);
+    font-size: var(--font-size-md);
+    color: var(--color-text-main);
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #000;
+    border-color: var(--color-border-main);
 }
 
 .search-button {
     width: 100%;
     padding: 1.2rem 2rem;
-    background: #000;
-    color: #fff;
+    background: var(--color-text-main);
+    color: var(--color-bg-primary);
     border: none;
     font-size: 1.1rem;
     font-weight: bold;
@@ -127,7 +127,7 @@
 }
 
 .search-button:hover {
-    background: #333;
+    background: var(--color-text-dark);
 }
 
 @media (max-width: 768px) {
@@ -142,5 +142,9 @@
 
     .search-section {
         padding: 2rem 1rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-lg);
     }
 }

@@ -2,6 +2,7 @@ import type React from "react";
 import { createContext, useContext, useState, useEffect } from "react";
 import * as authApi from "../api/auth";
 import type { User } from "../interfaces/user";
+import { AUTH_CONSTANTS } from "../constants/auth";
 
 interface AuthContextType {
   user: User | null;
@@ -22,8 +23,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await authApi.login(email, password);
       setUser(data.user);
       setToken(data.access_token);
-      localStorage.setItem("hotel_user", JSON.stringify(data.user));
-      localStorage.setItem("hotel_token", data.access_token);
+      sessionStorage.setItem(AUTH_CONSTANTS.STORAGE_KEYS.USER, btoa(JSON.stringify(data.user)));
+      sessionStorage.setItem(AUTH_CONSTANTS.STORAGE_KEYS.TOKEN, btoa(data.access_token));
       return true;
     } catch {
       return false;
@@ -40,8 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await authApi.register(userData);
       setToken(data.access_token);
       setUser(data.user);
-      localStorage.setItem("hotel_user", JSON.stringify(data.user));
-      localStorage.setItem("hotel_token", data.access_token);
+      sessionStorage.setItem(AUTH_CONSTANTS.STORAGE_KEYS.USER, btoa(JSON.stringify(data.user)));
+      sessionStorage.setItem(AUTH_CONSTANTS.STORAGE_KEYS.TOKEN, btoa(data.access_token));
       return true;
     } catch {
       return false;
@@ -51,21 +52,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("hotel_user");
-    localStorage.removeItem("hotel_token");
+    sessionStorage.removeItem(AUTH_CONSTANTS.STORAGE_KEYS.USER);
+    sessionStorage.removeItem(AUTH_CONSTANTS.STORAGE_KEYS.TOKEN);
     try {
       await authApi.logout();
     } catch {}
   };
 
   useEffect(() => {
-    const savedToken = localStorage.getItem("hotel_token");
-    const savedUser = localStorage.getItem("hotel_user");
+    const savedToken = sessionStorage.getItem(AUTH_CONSTANTS.STORAGE_KEYS.TOKEN);
+    const savedUser = sessionStorage.getItem(AUTH_CONSTANTS.STORAGE_KEYS.USER);
     if (savedToken) {
-      setToken(savedToken);
+      setToken(atob(savedToken));
     }
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      setUser(JSON.parse(atob(savedUser)));
     }
   }, []);
 
