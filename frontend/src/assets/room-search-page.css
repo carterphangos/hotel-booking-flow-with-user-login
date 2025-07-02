@@ -45,12 +45,16 @@
     font-weight: bold;
     margin: 0 0 var(--spacing-lg) 0;
     letter-spacing: 3px;
+    color: var(--color-text-white);
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000;
 }
 
 .hero-date {
     font-size: var(--font-size-lg);
     margin: 0;
     font-weight: 500;
+    color: var(--color-text-white);
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, -2px 0 0 #000, 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000;
 }
 
 .search-section {

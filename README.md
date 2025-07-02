@@ -113,6 +113,20 @@ services:
 
 ---
 
+## Test Account (after seeding)
+
+If you run the database seed command, a default test account will be created:
+
+```bash
+email:    alice@example.com
+password: password
+```
+
+You can use this account to log in and test the system.
+Alternatively, you can register a new account via the frontend if needed.
+
+---
+
 ## Screenshots
 
 ![Room Search](demo1.png)
