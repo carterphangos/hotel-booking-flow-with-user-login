@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import "../assets/masterhead.css";
 
@@ -17,9 +17,9 @@ export default function Masthead({ currentPage }: MastheadProps) {
       <div className="masthead-container">
         <div className="masthead-content">
           <div className="logo">
-            <button onClick={() => navigate("/booking")} className="logo-button">
+            <Link to="/booking" className="logo-button" aria-label="Go to Booking Home">
               <h1>HOTEL BOOKING</h1>
-            </button>
+            </Link>
           </div>
 
           <nav className="navigation">
@@ -29,11 +29,16 @@ export default function Masthead({ currentPage }: MastheadProps) {
                   Dashboard
                 </button>
                 <div className="user-menu">
-                  <button className="user-button" onClick={() => setShowUserMenu(!showUserMenu)}>
+                  <button
+                    className="user-button"
+                    aria-haspopup="true"
+                    aria-expanded={showUserMenu}
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                  >
                     {user.title} {user.name} ▼
                   </button>
                   {showUserMenu && (
-                    <div className="user-dropdown">
+                    <div className="user-dropdown" role="menu" aria-label="User Menu">
                       <button onClick={() => navigate("/dashboard")}>My Bookings</button>
                       <button onClick={logout}>Logout</button>
                     </div>
@@ -45,12 +50,14 @@ export default function Masthead({ currentPage }: MastheadProps) {
                 <button
                   className={`nav-button ${currentPage === "login" ? "active" : ""}`}
                   onClick={() => navigate("/login")}
+                  aria-current={currentPage === "login" ? "page" : undefined}
                 >
                   Login
                 </button>
                 <button
                   className={`nav-button ${currentPage === "register" ? "active" : ""}`}
                   onClick={() => navigate("/register")}
+                  aria-current={currentPage === "register" ? "page" : undefined}
                 >
                   Register
                 </button>

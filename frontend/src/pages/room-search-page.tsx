@@ -1,7 +1,9 @@
 import type React from "react";
 import { useState } from "react";
-import type { BookingData } from "../App";
-import { getRooms, type Room } from "../api/room";
+import { BookingData } from "../interfaces/booking";
+import { Room } from "../interfaces/room";
+import { getRooms } from "../api/room";
+import { GUEST_OPTIONS } from "../constants/guest-options";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../assets/room-search-page.css";
@@ -94,10 +96,11 @@ export default function RoomSearchPage({ bookingData, updateBookingData, onNext,
                 value={bookingData.guests}
                 onChange={(e) => updateBookingData({ guests: Number.parseInt(e.target.value) })}
               >
-                <option value={1}>1 Guest</option>
-                <option value={2}>2 Guests</option>
-                <option value={3}>3 Guests</option>
-                <option value={4}>4 Guests</option>
+                {GUEST_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

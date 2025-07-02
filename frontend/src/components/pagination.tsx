@@ -1,3 +1,4 @@
+import React from "react";
 import "../assets/pagination.css";
 
 interface PaginationProps {
@@ -47,7 +48,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
   if (totalPages <= 1) return null;
 
   return (
-    <div className="pagination">
+    <nav className="pagination" aria-label="Pagination Navigation">
       <div className="pagination-info">
         <span>
           Page {currentPage} of {totalPages}
@@ -59,24 +60,26 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           className="pagination-button prev"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          aria-label="Previous Page"
         >
           ◀ PREV
         </button>
 
         <div className="pagination-numbers">
           {visiblePages.map((page, index) => (
-            <div key={index}>
+            <React.Fragment key={index}>
               {page === "..." ? (
                 <span className="pagination-ellipsis">...</span>
               ) : (
                 <button
                   className={`pagination-number ${currentPage === page ? "active" : ""}`}
                   onClick={() => onPageChange(page as number)}
+                  aria-current={currentPage === page ? "page" : undefined}
                 >
                   {page}
                 </button>
               )}
-            </div>
+            </React.Fragment>
           ))}
         </div>
 
@@ -84,10 +87,11 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
           className="pagination-button next"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          aria-label="Next Page"
         >
           NEXT ▶
         </button>
       </div>
-    </div>
+    </nav>
   );
 }

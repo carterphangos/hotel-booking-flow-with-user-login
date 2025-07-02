@@ -1,32 +1,32 @@
 .contact-information-page {
     min-height: 100vh;
-    background: #f8f8f8;
-    padding: 2rem 0;
+    background: var(--color-bg-primary);
+    padding: var(--spacing-2xl) 0;
 }
 
 .contact-container {
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--spacing-2xl);
 }
 
 .content-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-2xl);
 }
 
 .form-section {
-    background: #e8e8e8;
-    padding: 2rem;
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-2xl);
 }
 
 .form-section h2 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-xl);
     font-weight: bold;
-    margin-bottom: 2rem;
-    color: #333;
+    margin-bottom: var(--spacing-2xl);
+    color: var(--color-text-dark);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -34,61 +34,61 @@
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--spacing-xl);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--spacing-sm);
 }
 
 .form-group label {
     font-weight: normal;
-    color: #666;
-    font-size: 0.95rem;
+    color: var(--color-text-medium);
+    font-size: var(--font-size-sm);
 }
 
 .form-group input,
 .form-group select {
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    background: #fff;
-    font-size: 1rem;
-    color: #333;
-    border-radius: 0;
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border-light);
+    background: var(--color-bg-quaternary);
+    font-size: var(--font-size-md);
+    color: var(--color-text-dark);
+    border-radius: var(--border-radius);
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #999;
+    border-color: var(--color-text-light);
 }
 
 .proceed-button {
     align-self: flex-start;
-    padding: 0.75rem 1.5rem;
-    background: #000;
-    color: #fff;
+    padding: var(--spacing-md) var(--spacing-2xl);
+    background: var(--color-text-main);
+    color: var(--color-bg-quaternary);
     border: none;
-    font-size: 0.9rem;
+    font-size: var(--font-size-xs);
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 1rem;
+    margin-top: var(--spacing-xl);
 }
 
 .proceed-button:hover {
-    background: #333;
+    background: var(--color-text-dark);
 }
 
 .summary-section {
-    background: #e8e8e8;
-    padding: 2rem;
+    background: var(--color-bg-secondary);
+    padding: var(--spacing-2xl);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--spacing-2xl);
 }
 
 .booking-dates-info {
@@ -96,74 +96,80 @@
 }
 
 .booking-dates-info .dates {
-    font-size: 1rem;
-    color: #333;
+    font-size: var(--font-size-md);
+    color: var(--color-text-dark);
     font-weight: normal;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
 }
 
 .booking-dates-info .nights {
-    font-size: 0.9rem;
-    color: #333;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-dark);
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
 }
 
 .booking-dates-info .room-guests {
-    font-size: 1rem;
-    color: #333;
+    font-size: var(--font-size-md);
+    color: var(--color-text-dark);
     font-weight: bold;
 }
 
-.room-image {
+.contact-room-image {
     width: 100%;
     height: 200px;
-    background: #d0d0d0;
+    background: var(--color-bg-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    font-size: 1.2rem;
+    color: var(--color-text-light);
+    font-size: var(--font-size-xl);
     font-weight: normal;
 }
 
+.contact-room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .room-details h3 {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     font-weight: bold;
-    margin: 1rem 0 2rem 0;
-    color: #333;
+    margin: var(--spacing-xl) 0 var(--spacing-2xl) 0;
+    color: var(--color-text-dark);
     text-transform: uppercase;
 }
 
 .price-breakdown {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--spacing-md);
 }
 
 .price-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #333;
-    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    font-size: var(--font-size-sm);
 }
 
 .price-row.total {
     font-weight: bold;
-    font-size: 1.1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #999;
-    margin-top: 0.5rem;
+    font-size: var(--font-size-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-text-light);
+    margin-top: var(--spacing-sm);
 }
 
 @media (max-width: 768px) {
     .content-wrapper {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: var(--spacing-lg);
     }
 
     .contact-container {
-        padding: 0 1rem;
+        padding: 0 var(--spacing-lg);
     }
 }
