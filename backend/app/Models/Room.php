@@ -14,10 +14,24 @@ class Room extends Model
         'description',
         'price',
         'image',
+        'guest',
     ];
 
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function scopeGuest($query, $guest)
+    {
+        if ($guest !== null) {
+            return $query->where('guest', '>=', $guest);
+        }
+        return $query;
+    }
+
+    public function scopeSortByPrice($query, $direction = 'asc')
+    {
+        return $query->orderBy('price', $direction);
     }
 }

@@ -32,6 +32,7 @@ class RoomFactory extends Factory
             'image' =>  $this->faker->randomElement($images),
             'created_at' => now(),
             'updated_at' => now(),
+            'guest' => $this->faker->numberBetween(1, 6),
         ];
     }
 }
